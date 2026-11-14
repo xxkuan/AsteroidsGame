@@ -1,14 +1,21 @@
 Spaceship aShip = new Spaceship(300, 300);
+Star[] backStars = new Star[100];
 boolean pressedH = false;
 boolean pressedW = false;
+boolean pressedS = false;
 boolean pressedA = false;
 boolean pressedD = false;
 
 public void setup() {
   background(0);
   size(600, 600);
-    aShip.setXspeed(2);
-    aShip.setYspeed(2);
+    aShip.setXspeed(0);
+    aShip.setYspeed(0);
+    aShip.setDirection(Math.random()*360);
+    for(int i = 0; i < backStars.length; i++){
+      backStars[i] = new Star((Math.random()*600), (Math.random()*600));
+      backStars[i].show();
+    }
 }
 
 public void draw() {
@@ -16,8 +23,14 @@ public void draw() {
   aShip.move();
   aShip.show();
   
+  for(int i = 0; i < backStars.length; i++){
+      
+      backStars[i].show();
+  }
+  
   if(pressedH){}
-  if(pressedW){aShip.accelerate(0.5);}
+  if(pressedW){aShip.accelerate(0.2);}
+  if(pressedS){aShip.accelerate(-0.05);}
   if(pressedA){aShip.turn(-10);}
   if(pressedD){aShip.turn(10);}
   
@@ -39,6 +52,9 @@ public void keyPressed(){
   if(key == 'w'){
     pressedW = true;
   }
+  if(key == 's'){
+    pressedS = true;
+  }
 }
 
 public void keyReleased(){
@@ -53,5 +69,8 @@ public void keyReleased(){
   }
   if(key == 'w'){
     pressedW = false;
-  }  
+  }
+  if(key == 's'){
+    pressedS = false;
+  } 
 }
