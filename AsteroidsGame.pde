@@ -1,5 +1,10 @@
+//to do
+//hyperspace limit bar
+
 Spaceship aShip = new Spaceship(300, 300);
 Star[] backStars = new Star[100];
+//Asteroid bob = new Asteroid(200, 200);
+ArrayList <Asteroid> asteroids = new ArrayList <Asteroid>();
 boolean pressedH = false;
 boolean pressedW = false;
 boolean pressedS = false;
@@ -9,6 +14,7 @@ boolean pressedD = false;
 public void setup() {
   background(0);
   size(600, 600);
+  //bob.setXspeed(2); bob.setYspeed(2);
     aShip.setXspeed(0);
     aShip.setYspeed(0);
     aShip.setDirection(Math.random()*360);
@@ -22,14 +28,21 @@ public void draw() {
   background(0);
   aShip.move();
   aShip.show();
-  
+
+  //bob.accelerate(0.1);
+  //bob.move(); bob.show();
+  if((int)(Math.random()*1) <= 1){
+    asteroids.add(new Asteroid((int)(Math.random()*600), (int)(Math.random()*100)));
+  }
+
+
   for(int i = 0; i < backStars.length; i++){
       
       backStars[i].show();
   }
   
   if(pressedH){}
-  if(pressedW){aShip.accelerate(0.2);}
+  if(pressedW){aShip.accelerate(0.15);}
   if(pressedS){aShip.accelerate(-0.05);}
   if(pressedA){aShip.turn(-10);}
   if(pressedD){aShip.turn(10);}
