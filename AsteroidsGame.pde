@@ -1,5 +1,7 @@
 //to do
 //hyperspace limit bar
+//do not hyperspace on top of asteroids
+//make fast asteroids (via child class)
 
 Spaceship aShip = new Spaceship(300, 300);
 Star[] backStars = new Star[100];
@@ -31,18 +33,25 @@ public void draw() {
 
   //bob.accelerate(0.1);
   //bob.move(); bob.show();
-  if((int)(Math.random()*1) <= 1){
-    asteroids.add(new Asteroid((int)(Math.random()*600), (int)(Math.random()*100)));
+  if((int)(Math.random()*100) > 98){
+    asteroids.add(new Asteroid((int)(Math.random()*600), (int)(Math.random()*10)));
   }
 
+  for(int i = asteroids.size() - 1; i > 0; i--){
+    asteroids.get(i).show();
+    asteroids.get(i).move();
+    asteroids.get(i).accelerate(0.1);
+    if(dist((float)aShip.getCenterX(), (float)aShip.getCenterY(), (float)asteroids.get(i).getCenterX(), (float)asteroids.get(i).getCenterY()) <= 20){
+      asteroids.remove(i);
+    }
+  }
 
-  for(int i = 0; i < backStars.length; i++){
-      
+  for(int i = 0; i < backStars.length; i++){   
       backStars[i].show();
   }
   
   if(pressedH){}
-  if(pressedW){aShip.accelerate(0.15);}
+  if(pressedW){aShip.accelerate(0.12);}
   if(pressedS){aShip.accelerate(-0.05);}
   if(pressedA){aShip.turn(-10);}
   if(pressedD){aShip.turn(10);}
