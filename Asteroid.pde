@@ -20,5 +20,6 @@ class Asteroid extends Floater{
     public void setYspeed(double yySpeed){myYspeed = yySpeed;}
     public double getXspeed(){return myXspeed;}
     public double getYspeed(){return myYspeed;}
-
+    public double getCenterX(){return myCenterX;}
+    public double getCenterY(){return myCenterY;}
 }
